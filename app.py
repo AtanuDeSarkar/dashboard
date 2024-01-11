@@ -20,7 +20,7 @@ import seaborn as sns
 
 app = dash.Dash(__name__,title='Analytics Dashboard')
 server=app.server
-app._favicon = ("D:/pythonProject/assets/favicon.ico")
+#app._favicon = ("D:/pythonProject/assets/favicon.ico")
 
 import pandas as pd
 from openpyxl import load_workbook
