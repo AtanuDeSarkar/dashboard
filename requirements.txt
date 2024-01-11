@@ -2,3 +2,7 @@ dash
 pandas
 gunicorn
 dash-tools
+folium
+matplotlib
+plotly
+seaborn
