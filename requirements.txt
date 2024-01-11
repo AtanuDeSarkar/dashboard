@@ -1,1 +1,4 @@
-gunicorn==19.7.1
+dash==2.7.0
+pandas==1.4.3
+gunicorn
+dash-tools
