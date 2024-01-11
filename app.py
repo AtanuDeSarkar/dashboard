@@ -10,6 +10,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from folium.plugins import TimeSliderChoropleth
 import requests
+from app import wsgi
 
 from folium import plugins
 import seaborn as sns
