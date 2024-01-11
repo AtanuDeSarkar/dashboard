@@ -18,7 +18,26 @@ app = dash.Dash(__name__,title='Analytics Dashboard')
 server=app.server
 app._favicon = ("D:/pythonProject/assets/favicon.ico")
 
-df=pd.read_csv("df_new123.csv")
+import pandas as pd
+from openpyxl import load_workbook
+import requests
+
+# Replace 'YOUR_FILE_ID' with the actual file ID from the shareable link
+file_id = '1PlLImxy_gIg1cf2DLgrhfxqg3Fy2Q2PV'
+
+# Construct the download link
+download_link = f'https://drive.google.com/uc?id={file_id}'
+
+# Download the file content using requests
+response = requests.get(download_link)
+
+# Create a Pandas DataFrame directly from the Excel content
+df = pd.read_excel(pd.ExcelFile(response.content))
+
+# Now 'df' contains your data, and you can perform operations on it as a DataFrame
+
+
+#df=pd.read_csv("df_new123.csv")
 #print(df.Location.unique())
 
 
