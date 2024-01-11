@@ -6,3 +6,4 @@ folium
 matplotlib
 plotly
 seaborn
+openpyxl
