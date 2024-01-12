@@ -5,10 +5,6 @@ import plotly.express as px
 from dash import dcc
 from dash import html
 from dash.dependencies import Output, Input
-import folium
-import matplotlib
-import matplotlib.pyplot as plt
-from folium.plugins import TimeSliderChoropleth
 import requests
 
 def some_function():
