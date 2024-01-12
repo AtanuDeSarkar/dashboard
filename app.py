@@ -22,12 +22,37 @@ app = dash.Dash(__name__,title='Analytics Dashboard')
 server=app.server
 #app._favicon = ("D:/pythonProject/assets/favicon.ico")
 
+######################### From drive excel file read the data
+
+# import pandas as pd
+# from openpyxl import load_workbook
+# import requests
+
+# # Replace 'YOUR_FILE_ID' with the actual file ID from the shareable link
+# file_id = '1PlLImxy_gIg1cf2DLgrhfxqg3Fy2Q2PV'
+
+# # Construct the download link
+# download_link = f'https://drive.google.com/uc?id={file_id}'
+
+# # Download the file content using requests
+# response = requests.get(download_link)
+
+# # Create a Pandas DataFrame directly from the Excel content
+# df = pd.read_excel(pd.ExcelFile(response.content))
+
+# # Now 'df' contains your data, and you can perform operations on it as a DataFrame
+
+
+########################### FROM CSV ###################################
+
 import pandas as pd
-from openpyxl import load_workbook
 import requests
+from bs4 import BeautifulSoup
+from urllib.parse import unquote
+from io import StringIO
 
 # Replace 'YOUR_FILE_ID' with the actual file ID from the shareable link
-file_id = '1PlLImxy_gIg1cf2DLgrhfxqg3Fy2Q2PV'
+file_id = '1O_Pk3K6qlEps5CbHJi8aK5w_ybtdc1e6'
 
 # Construct the download link
 download_link = f'https://drive.google.com/uc?id={file_id}'
@@ -35,10 +60,21 @@ download_link = f'https://drive.google.com/uc?id={file_id}'
 # Download the file content using requests
 response = requests.get(download_link)
 
-# Create a Pandas DataFrame directly from the Excel content
-df = pd.read_excel(pd.ExcelFile(response.content))
+# Check if the response is an HTML page indicating a warning
+if 'Virus scan warning' in response.text:
+    soup = BeautifulSoup(response.text, 'html.parser')
+    download_link = soup.find('form', {'id': 'download-form'}).get('action')
+    response = requests.get(download_link, params={'id': file_id, 'confirm': 't'})
 
-# Now 'df' contains your data, and you can perform operations on it as a DataFrame
+# Create a Pandas DataFrame directly from the CSV content
+csv_content = response.text
+df = pd.read_csv(StringIO(csv_content))
+
+
+
+#############################################################################################################
+
+
 
 
 #df=pd.read_csv("df_new123.csv")
