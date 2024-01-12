@@ -11,8 +11,7 @@ def some_function():
     from app import wsgi
     # Rest of the function
 
-from folium import plugins
-import seaborn as sns
+
 
 app = dash.Dash(__name__,title='Analytics Dashboard')
 server=app.server
